@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV Data Display</title>
+</head>
+<body>
+    <h1>CSV Data</h1>
+    <table id="csvTable" border="1"></table>
+
+    <script>
+        fetch('table_TP_RT_TXN_RPTMT.csv')
+            .then(response => response.text())
+            .then(text => {
+                let rows = text.split('\n');
+                let table = document.getElementById('csvTable');
+                rows.forEach(row => {
+                    let tr = document.createElement('tr');
+                    row.split(',').forEach(cell => {
+                        let td = document.createElement('td');
+                        td.innerText = cell;
+                        tr.appendChild(td);
+                    });
+                    table.appendChild(tr);
+                });
+            });
+    </script>
+</body>
+</html>
